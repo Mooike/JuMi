@@ -1,0 +1,9 @@
+<ul>
+   <li *ngFor = "let td of tdlist" >
+       <button (click)="todoSelect(td)">{{td.title}}</button>
+        
+   </li>
+</ul>
+
+<app-todo [todo]="td"></app-todo>
+

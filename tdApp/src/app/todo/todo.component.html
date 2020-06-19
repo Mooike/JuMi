@@ -1,0 +1,24 @@
+<table e *ngIf="todo != null">
+    
+    <tr>
+        <td>ID:</td>
+        <td>{{todo.id}}</td>
+    </tr>
+    <tr>
+        <td>Titel:</td>
+        <td><input [(ngModel)]="todo.title"></td>
+    </tr>
+    
+    <tr>
+    <td>List ID:</td>
+    <td>{{todo.listid}}</td>
+    </tr>
+    <tr>
+        <td colspan="2"><button (click)="updateToDo()">Übernehmen</button></td>
+       </tr>
+       
+    
+</table>
+   
+<div *ngIf="todo == null">Bitte klicken Sie ein ToDo in der Liste an</div>
+
