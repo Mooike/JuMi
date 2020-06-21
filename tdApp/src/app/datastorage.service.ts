@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 export class DatastorageService {
  constructor(private httpClient: HttpClient) { }
  loadToDos(): Observable<any> {
- return this.httpClient.get("https://localhost/Seminararbeit/public/index.php/tds");
+ return this.httpClient.get("/Seminararbeit/public/index.php/tds");
  }
 
  updateToDo(todo) {
-  this.httpClient.put("/Seminararbeit/public/index.php/tds/" + todo.id, todo.title)
+  this.httpClient.put("/public/index.php/tds/" + todo.id, todo.title)
   .subscribe(data => console.log(data))
  }
 }
