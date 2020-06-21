@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
    }
-   nav, main {
+  .login, nav, main {
     margin: 20px;
     padding: 20px;
     border: 1px solid #ccc;
@@ -13,4 +13,6 @@
    main {
     width: 100%;
    }
-   
+.login{
+    width: 27%;
+}

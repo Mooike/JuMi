@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DatastorageService } from '../datastorage.service';
 @Component({
   selector: 'app-navi',
@@ -6,8 +6,11 @@ import { DatastorageService } from '../datastorage.service';
   styleUrls: ['./navi.component.css']
 })
 export class NaviComponent implements OnInit {
+  @Input() list: any[] = [];
   lists: any[] = [];
-  list: any = null;
+  //list: any = null;
+  hide: boolean = true;
+  
   constructor(public ds: DatastorageService) { }
 
   ngOnInit(): void {
@@ -22,6 +25,15 @@ export class NaviComponent implements OnInit {
       console.log(this.lists);
       
     });
+  }
+  addList(){
+    console.log("aus navi:" + this.list);
+    this.ds.addList(this.list)
+
+  }
+  visible(){
+    this.hide = !this.hide;
+    console.log(this.hide)
   }
 }
 

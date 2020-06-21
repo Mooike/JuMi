@@ -1,4 +1,4 @@
-<table e *ngIf="todo != null">
+<table  *ngIf="todo != null">
     
     <tr>
         <td>ID:</td>
@@ -9,18 +9,21 @@
         <td><input [(ngModel)]="todo.title"></td>
     </tr>
     <tr>
-        <td>Prio:</td>
+        <td>Status:</td>
         <td>
-            <select [(ngModel)]="todo.prio">
+            <select [(ngModel)]="todo.status">
                 <option value = "offen">offen</option>
+                <option value = "in Bearbeitung">in Bearbeitung</option>
                 <option value = "erledigt">erledigt</option>
+                <option value = "verspätet erledigt">verspätet erledigt</option>
+                <option value = "abgebrochen">abgebrochen</option>
             </select>
         </td>
     </tr>
     <tr>
-        <td>Status:</td>
+        <td>Prio:</td>
         <td>
-            <select [(ngModel)]="todo.status">
+            <select [(ngModel)]="todo.prio">
                 <option value = "1">1</option>
                 <option value = "2">2</option>
                 <option value = "3">3</option>

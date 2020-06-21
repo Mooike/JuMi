@@ -1,6 +1,10 @@
+<button (click)="visible()">+</button>
 <ul>
     <li *ngFor = "let li of lists" >
-        <h1>{{li.title}}</h1>
+        <span>{{li.title}}</span>
         
+    </li>
+    <li *ngIf = "hide == false" ><input [(ngModel)]="list.title">
+    <button (click)="addList()">+</button>
     </li>
  </ul>

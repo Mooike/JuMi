@@ -8,12 +8,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { TodoComponent } from './todo/todo.component';
 import { FormsModule } from '@angular/forms';
 import { NaviComponent } from './navi/navi.component';
+import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
     TdlistComponent,
     TodoComponent,
-    NaviComponent
+    NaviComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
