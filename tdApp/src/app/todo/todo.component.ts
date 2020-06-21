@@ -14,6 +14,7 @@ export class TodoComponent implements OnInit {
   }
 
   updateToDo(){
+    console.log(this.todo);
     this.ds.updateToDo(this.todo)
 
   }

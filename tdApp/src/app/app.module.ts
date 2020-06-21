@@ -7,11 +7,13 @@ import { TdlistComponent } from './tdlist/tdlist.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TodoComponent } from './todo/todo.component';
 import { FormsModule } from '@angular/forms';
+import { NaviComponent } from './navi/navi.component';
 @NgModule({
   declarations: [
     AppComponent,
     TdlistComponent,
-    TodoComponent
+    TodoComponent,
+    NaviComponent
   ],
   imports: [
     BrowserModule,
