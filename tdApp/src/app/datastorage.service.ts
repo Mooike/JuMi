@@ -13,7 +13,7 @@ export class DatastorageService {
     return this.httpClient.get("/Seminararbeit/public/index.php/tds");
     }
   deleteList(list){
-    return this.httpClient.delete("/Seminararbeit/public/index.php/deletelistsbyid/" + list.id);
+    return this.httpClient.delete("/Seminararbeit/public/index.php/list")
   }
   loadlists(): Observable<any> {
       return this.httpClient.get("/Seminararbeit/public/index.php/lists");
