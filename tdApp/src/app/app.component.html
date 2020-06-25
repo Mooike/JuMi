@@ -1,10 +1,10 @@
 <div class="wrapper">
   <nav>
-  <app-navi></app-navi>
+  <app-navi (eventClicked)="childEventClicked($event)"></app-navi>
   </nav>
   <main>
   <h1>ToDos</h1>
-  <app-tdlist></app-tdlist>
+  <app-tdlist [event]="clickedEvent"></app-tdlist>
   </main>
   <div class = "login">
     <app-login></app-login>

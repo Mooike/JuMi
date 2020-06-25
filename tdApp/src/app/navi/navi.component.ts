@@ -1,13 +1,18 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {NgForm} from '@angular/forms';
 import { DatastorageService } from '../datastorage.service';
+
 @Component({
   selector: 'app-navi',
   templateUrl: './navi.component.html',
   styleUrls: ['./navi.component.css']
 })
 export class NaviComponent implements OnInit {
-  @Input() list: any[] = [];
+  @Input() list: any = null;
+  @Output() eventClicked = new EventEmitter<Event>();
+
   lists: any[] = [];
+  test: any = null;
   //list: any = null;
   hide: boolean = true;
   
@@ -26,9 +31,29 @@ export class NaviComponent implements OnInit {
       
     });
   }
-  addList(){
-    console.log("aus navi:" + this.list);
-    this.ds.addList(this.list)
+  onSubmit(list: NgForm){
+    
+    console.log(list.value);
+    
+    this.ds.addList(list.value);
+    setTimeout(() => {
+      this.getlists()
+    }, 50);
+    
+    
+
+  }
+  deleteList(list){
+    this.ds.deleteList(list);
+    alert("liste gelöscht");
+    setTimeout(() => {
+      this.getlists()
+    }, 50);
+  }
+  onClick(li: Event): void {
+    this.eventClicked.emit(li);
+    console.log("aus navi unten");
+    console.log(li)
 
   }
   visible(){

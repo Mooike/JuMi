@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  
   title = 'tdApp';
+  public clickedEvent: Event;
+
+  childEventClicked(li: Event) {
+    this.clickedEvent = li;
+    console.log("aus app unten");
+    console.log(this.clickedEvent);
+  }
 }

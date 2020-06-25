@@ -1,9 +1,11 @@
+<button (click)= "getToDos()">Get Todos</button>
+
 <ul>
    <li *ngFor = "let td of tdlist" >
        <button (click)="todoSelect(td)">{{td.title}}</button>
         
    </li>
 </ul>
-
+<span>{{event | json}}</span>
 <app-todo [todo]="td"></app-todo>
 

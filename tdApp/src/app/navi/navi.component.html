@@ -1,10 +1,16 @@
 <button (click)="visible()">+</button>
 <ul>
     <li *ngFor = "let li of lists" >
-        <span>{{li.title}}</span>
+        <span (click)="onClick(li)">{{li.title}} <button (click) = "deleteList(li)">X</button></span>
         
     </li>
-    <li *ngIf = "hide == false" ><input [(ngModel)]="list.title">
-    <button (click)="addList()">+</button>
+    <li *ngIf = "hide == false" >
+        
+
+    <form #list = "ngForm" (ngSubmit)="onSubmit(list)"  novalidate>
+        <input name="title" ngModel required #title="ngModel">
+        <button>+</button>
+    </form>
+    <span>{{list.value | json}}</span>
     </li>
  </ul>
