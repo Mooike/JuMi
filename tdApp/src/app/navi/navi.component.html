@@ -1,7 +1,7 @@
 <button (click)="visible()">+</button>
 <ul>
     <li *ngFor = "let li of lists" >
-        <span (click)="onClick(li)">{{li.title}} <button (click) = "deleteList(li)">X</button></span>
+        <span (click)="onClick(li)">{{li.title}}</span>
         
     </li>
     <li *ngIf = "hide == false" >

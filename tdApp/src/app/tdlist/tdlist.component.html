@@ -1,5 +1,4 @@
-<button (click)= "getToDos()">Get Todos</button>
-
+<button>Add Todo</button>
 <ul>
    <li *ngFor = "let td of tdlist" >
        <button (click)="todoSelect(td)">{{td.title}}</button>

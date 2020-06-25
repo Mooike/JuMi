@@ -50,11 +50,10 @@ export class NaviComponent implements OnInit {
       this.getlists()
     }, 50);
   }
-  onClick(li: Event): void {
-    this.eventClicked.emit(li);
+  onClick(event: Event): void {
+    this.eventClicked.emit(event);
     console.log("aus navi unten");
-    console.log(li)
-
+    console.log(event);
   }
   visible(){
     this.hide = !this.hide;

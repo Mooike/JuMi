@@ -8,9 +8,9 @@ import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 })
 export class DatastorageService {
  constructor(private httpClient: HttpClient) { }
- loadToDos(): Observable<any> {
+ loadToDos(list): Observable<any> {
    
-    return this.httpClient.get("/Seminararbeit/public/index.php/tds");
+    return this.httpClient.get("/Seminararbeit/public/index.php/tdsbylist/" + list.id);
     }
   deleteList(list){
     return this.httpClient.delete("/Seminararbeit/public/index.php/list")

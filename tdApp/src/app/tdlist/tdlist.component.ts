@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { DatastorageService } from '../datastorage.service';
 @Component({
   selector: 'app-tdlist',
@@ -12,19 +12,23 @@ export class TdlistComponent implements OnInit {
   
   constructor(public ds: DatastorageService) { }
   ngOnInit(): void {
-    this.getToDos()
     
   }
+  ngOnChanges(changes: SimpleChanges) {
+    this.getToDos();
+}
 
   getToDos() {
-    console.log(this.event)
-    this.ds.loadToDos().subscribe(data => {
-      this.tdlist = Object.keys(data).map(function(k) { return data[k] });
-      console.log(this.tdlist);
-    })
+   console.log(this.event)
+  this.ds.loadToDos(this.event).subscribe(data => {
+      
+    this.tdlist = Object.keys(data).map(function(k) { return data[k] }); //Umwandlung von Onjekt in Array 
+
+    console.log(this.tdlist);
     
+  })
   }
-  
+
   todoSelect(t) {
     this.td = t;
     console.log(this.td)
