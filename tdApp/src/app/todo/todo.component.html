@@ -1,60 +1,31 @@
-<table  *ngIf="todo != null">
-    
-    <tr>
-        <td>ID:</td>
-        <td>{{todo.id}}</td>
-    </tr>
-    <tr>
-        <td>Titel:</td>
-        <td><input [(ngModel)]="todo.title"></td>
-    </tr>
-    <tr>
-        <td>Status:</td>
-        <td>
-            <select [(ngModel)]="todo.status">
-                <option value = "offen">offen</option>
-                <option value = "in Bearbeitung">in Bearbeitung</option>
-                <option value = "erledigt">erledigt</option>
-                <option value = "verspätet erledigt">verspätet erledigt</option>
-                <option value = "abgebrochen">abgebrochen</option>
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <td>Prio:</td>
-        <td>
-            <select [(ngModel)]="todo.prio">
-                <option value = "1">1</option>
-                <option value = "2">2</option>
-                <option value = "3">3</option>
-                <option value = "4">4</option>
-                <option value = "5">5</option>
-            </select>
-                
-        </td>
-    </tr>
-    <tr>
-        <td>Endtermin:</td>
-        
-        <input type = "date" [(ngModel)]="todo.datum">
-    </tr>
-    <tr>
-        
-        <td>Beschreibung:</td>
-        <td><input [(ngModel)]="todo.beschreibung"></td>
-    </tr>
-    
-    
-    <tr>
-    <td>List ID:</td>
-    <td>{{todo.listid}}</td>
-    </tr>
-    <tr>
-        <td colspan="2"><button (click)="updateToDo()">Übernehmen</button></td>
-       </tr>
-       
-    
-</table>
-   
-<div *ngIf="todo == null">Bitte klicken Sie ein ToDo in der Liste an</div>
+<div *ngIf="todo != null">
+    <span>ID:</span>
+    <span>{{todo.id}}</span><br>
+    <label>Titel:</label>
+    <input [(ngModel)]="todo.title"><br>
+    <label>Status:</label>
+    <select [(ngModel)]="todo.status">
+        <option value = "offen">offen</option>
+        <option value = "in Bearbeitung">in Bearbeitung</option>
+        <option value = "erledigt">erledigt</option>
+        <option value = "verspätet erledigt">verspätet erledigt</option>
+        <option value = "abgebrochen">abgebrochen</option>
+    </select><br>
+    <label>Prio:</label>
+    <select [(ngModel)]="todo.prio">
+        <option value = "1">1</option>
+        <option value = "2">2</option>
+        <option value = "3">3</option>
+        <option value = "4">4</option>
+        <option value = "5">5</option>
+    </select><br>
+    <label>Endtermin:</label>
+    <input type = "date" [(ngModel)]="todo.enddate"><br>
+    <label>Beschreibung:</label><br>
+    <textarea type="text" rows="30" cols="50" [(ngModel)]="todo.content" aria-required="true" required></textarea><br>
+    <span>List ID:</span>
+    <div>{{todo.list_id}}</div><br>
+    <button *ngIf = "todo.status != 'erledigt'" type="submit" (click)="updateToDo(todo); hide = true">Übernehmen</button>
+    <div *ngIf = "todo.status == 'erledigt'">Aufgabe bereits erldigt und nichtmehr änderbar!</div>
+    </div>
 

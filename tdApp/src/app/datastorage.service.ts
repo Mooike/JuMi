@@ -3,31 +3,41 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 
+
+
 @Injectable({
  providedIn: 'root'
 })
 export class DatastorageService {
  constructor(private httpClient: HttpClient) { }
- loadToDos(list): Observable<any> {
-   
-    return this.httpClient.get("/Seminararbeit/public/index.php/tdsbylist/" + list.id);
-    }
-  deleteList(list){
-    return this.httpClient.delete("/Seminararbeit/public/index.php/list")
-  }
   loadlists(): Observable<any> {
-      return this.httpClient.get("/Seminararbeit/public/index.php/lists");
-      }
+   return this.httpClient.get("/Seminararbeit/public/index.php/lists");
+  }
+  loaduser(): Observable<any> {
+    return this.httpClient.get("/Seminararbeit/public/index.php/users");
+   }
   addList(list){
-    console.log("aus ds: " + list.title)
-    return this.httpClient.post("/Seminararbeit/public/index.php/addList/"+ list.title,list)
-    .subscribe(data => console.log(data));
-    }
-    
+    console.log("aus ds")
+    console.log(list)
+    return this.httpClient.post("/Seminararbeit/public/index.php/list/"+ list.name, list)
+  .subscribe(data => console.log(data));
+  }
+  deleteList(list){
+    return this.httpClient.delete("/Seminararbeit/public/index.php/list/"+ list.id).subscribe(data => console.log(data));
+  }
 
- updateToDo(todo) {
-    console.log(todo)
-  this.httpClient.put("/Seminararbeit/public/index.php/tds/" + todo.id , todo)
-  .subscribe(data => console.log(data))
- }
+  loadToDos(list): Observable<any> {
+    return this.httpClient.get("/Seminararbeit/public/index.php/tds/" + list.id);
+    }
+  addtodo(todo){
+    console.log(todo.title);
+    return this.httpClient.post("/Seminararbeit/public/index.php/tds", todo).subscribe(data => console.log(data));
+  }
+  deletetodo(todo){
+    return this.httpClient.delete("/Seminararbeit/public/index.php/todo/" + todo.id).subscribe(data => console.log(data));
+  }
+updatetodo(todo){
+    return this.httpClient.put("/Seminararbeit/public/index.php/tds", todo).subscribe(data => console.log(data));
+}
+
 }

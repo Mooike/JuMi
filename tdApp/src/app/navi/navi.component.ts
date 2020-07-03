@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import { DatastorageService } from '../datastorage.service';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-navi',
@@ -10,18 +11,25 @@ import { DatastorageService } from '../datastorage.service';
 export class NaviComponent implements OnInit {
   @Input() list: any = null;
   @Output() eventClicked = new EventEmitter<Event>();
-
   lists: any[] = [];
   test: any = null;
+  user: any = null;
+  users:any = null;
   //list: any = null;
   hide: boolean = true;
   
   constructor(public ds: DatastorageService) { }
 
   ngOnInit(): void {
-    this.getlists()
+    this.getlists();
+    this.getuser();
   }
-
+  getuser(){
+    this.ds.loaduser().subscribe(data => {
+      this.users = Object.keys(data).map(function(k) { return data[k] });
+      console.log(this.users)
+    })
+  }
   getlists(){
     this.ds.loadlists().subscribe(data => {
       
@@ -30,25 +38,22 @@ export class NaviComponent implements OnInit {
       console.log(this.lists);
       
     });
+    
   }
-  onSubmit(list: NgForm){
-    
-    console.log(list.value);
-    
-    this.ds.addList(list.value);
+  addlist(list){
+    console.log(list);
+    console.log(list)
+    this.ds.addList(list);
     setTimeout(() => {
       this.getlists()
-    }, 50);
-    
-    
-
+    }, 50);  
+    this.hide = true;
   }
-  deleteList(list){
+  deletelist(list){
     this.ds.deleteList(list);
     alert("liste gelöscht");
-    setTimeout(() => {
-      this.getlists()
-    }, 50);
+    this.getlists();
+    
   }
   onClick(event: Event): void {
     this.eventClicked.emit(event);
@@ -57,6 +62,7 @@ export class NaviComponent implements OnInit {
   }
   visible(){
     this.hide = !this.hide;
+    
     console.log(this.hide)
   }
 }

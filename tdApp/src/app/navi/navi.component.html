@@ -1,16 +1,22 @@
-<button (click)="visible()">+</button>
+Liste hinzufügen: <button (click)="visible()">+</button>
 <ul>
     <li *ngFor = "let li of lists" >
-        <span (click)="onClick(li)">{{li.title}}</span>
-        
+        <span (click)="onClick(li)">{{li.name}}</span>
+        <button (click)="deletelist(li)">X</button>
     </li>
     <li *ngIf = "hide == false" >
+    <form #list = "ngForm" (ngSubmit)="addlist(list.value)"  novalidate>
+        <input name="name" ngModel required><br>
+        User:
+        <select name ="user_id" ngModel>
+            <option *ngFor="let u of users"
+            [value]="u.id">
+             {{u.username}}
+            </option>
+        </select>
         
-
-    <form #list = "ngForm" (ngSubmit)="onSubmit(list)"  novalidate>
-        <input name="title" ngModel required #title="ngModel">
         <button>+</button>
     </form>
-    <span>{{list.value | json}}</span>
+    
     </li>
  </ul>

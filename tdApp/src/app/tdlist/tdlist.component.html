@@ -1,10 +1,55 @@
-<button>Add Todo</button>
-<ul>
-   <li *ngFor = "let td of tdlist" >
-       <button (click)="todoSelect(td)">{{td.title}}</button>
-        
-   </li>
-</ul>
-<span>{{event | json}}</span>
+<div class = "container">
+<div class = "sortedtable">
+<h1 *ngIf="event != null">{{event.name}} von User mit ID: {{event.user_id}} <button (click)="hide = !hide; td = null; ">+</button></h1>
+<table matSort (matSortChange)="sortData($event)">
+    <tr>
+      <th mat-sort-header="title">Titel</th>
+      <th mat-sort-header="prio">Prio</th>
+      <th mat-sort-header="status">Status</th>
+      <th mat-sort-header="enddate">Enddatum</th>
+    </tr>
+  
+    <tr *ngFor="let td of sortedData" (click)="todoSelect(td)">
+      <td>{{td.title}}</td>
+      <td>{{td.prio}}</td>
+      <td>{{td.status}}</td>
+      <td>{{td.enddate}}</td>
+      <button *ngIf="td.status != 'erledigt'" (click)="deletetodo(td)">X</button>
+    </tr>
+</table>
+</div>
 <app-todo [todo]="td"></app-todo>
+<div class = "detailsform"*ngIf="hide == false;">
+    <h1>Neues Todo anlegen:</h1>
+    <form #newtodo = "ngForm" (ngSubmit)="addtodo(newtodo.value)"><br>
+        <span>Titel</span>
+        <input name="title"  ngModel required /><br>
+        <span>Status</span>
+        <select name ="status" ngModel>
+            <option value = "offen">offen</option>
+            <option value = "in Bearbeitung">in Bearbeitung</option>
+            <option value = "erledigt">erledigt</option>
+            <option value = "verspätet erledigt">verspätet erledigt</option>
+            <option value = "abgebrochen">abgebrochen</option>
+        </select>
+        <br>
+        <span>Prio</span>
+        <select name="prio" ngModel>
+            <option value = 1>1 - Sehr wichtig</option>
+            <option value = 2>2 - wichtig</option>
+            <option value = 3>3 - mittelwichtig</option>
+            <option value = 4>4 - eher unwichtig</option>
+            <option value = 5>5 - unwichtig</option>
+        </select>
+        <br>
+        <span>Enddatum</span>
+        <input type="date" name = "enddate" ngModel>
+        <br>
+        <span>Beschreibung</span>
+        <textarea name = "content" rows="30" cols="50" ngModel></textarea>
+        <br>
+        <input type="submit" value="submit">
 
+    </form>
+</div>
+</div>
